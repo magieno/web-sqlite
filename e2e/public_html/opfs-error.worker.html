@@ -40,9 +40,10 @@
         await sqliteClient.executeSql("INVALID SQL");
     } catch (e) {
         console.log("Error in page", e);
-        document.getElementById("alert-container").innerHTML = "<div class=\"alert alert-error\" id='error' role=\"alert\">\n" +
+        document.getElementById("alert-container").innerHTML = "<div class=\"alert alert-danger\" id='error' role=\"alert\">\n" +
             "  <h4 class=\"alert-heading\">Error!</h4>\n" +
-            "  <p>There was an error executing the SQL Query</p>\n" +
+            "  <p>There was an error executing the SQL Query:</p>\n" +
+            " <pre>" + JSON.stringify(e) + "</pre>" +
             "</div>";
     }
 </script>
