@@ -25,21 +25,6 @@
             <h2 class="badge text-bg-warning "><i class="bi bi-gear-fill"></i> Worker</h2>
 
             <div id="alert-container" class="mt-4"></div>
-
-            <h3 class="mt-5">Data Stored:</h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-
-                <tbody id="users">
-
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
@@ -54,13 +39,11 @@
     try {
         sqliteClient.executeSql("INVALID SQL");    
     } catch (e) {
-        document.getElementById("alert-container").innerHTML = "<div class=\"alert alert-success\" id='success' role=\"alert\">\n" +
-            "  <h4 class=\"alert-heading\">Success!</h4>\n" +
-            "  <p>The data has been loaded successfully.</p>\n" +
+        document.getElementById("alert-container").innerHTML = "<div class=\"alert alert-error\" id='error' role=\"alert\">\n" +
+            "  <h4 class=\"alert-heading\">Error!</h4>\n" +
+            "  <p>There was an error executing the SQL Query</p>\n" +
             "</div>";
     }
-
-
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
