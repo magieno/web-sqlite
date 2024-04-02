@@ -40,7 +40,6 @@ export class SqliteClient {
             throw new Error("You need to call `init` before calling `executeSql`.");
         }
 
-        const response = this.adapter.executeSql(sqlStatement, bindParameters, returnValue, rowMode);
-
+        return this.adapter.executeSql(sqlStatement, bindParameters, returnValue, rowMode);
     }
 }
