@@ -11,7 +11,6 @@ import {MemoryWorkerSqliteOptionsInterface} from "./interfaces/memory-worker-sql
 import {OpfsSahWorkerSqliteOptionsInterface} from "./interfaces/opfs-sah-worker-sqlite-options.interface";
 
 const log = (...args) => console.log(...args);
-const error = (...args) => console.error(...args);
 
 class SqliteClientWorker {
     protected db: Database;
@@ -38,10 +37,16 @@ class SqliteClientWorker {
 
     private async createDatabase(createDatabaseMessage: CreateDatabaseMessage) {
         const uniqueId = createDatabaseMessage.uniqueId;
+        const errorHandler = (error) => {
+            console.error(error);
+            this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId, error));
+            return;
+        }
+
         try {
             const sqlite3 = await sqlite3InitModule({
                 print: log,
-                printErr: error,
+                printErr: errorHandler,
             });
 
             switch (createDatabaseMessage.options.type) {
@@ -57,8 +62,7 @@ class SqliteClientWorker {
                         this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId));
 
                     } catch (err) {
-                        error(err.name, err.message);
-                        this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId, err));
+                        errorHandler(err);
                     }
                     break;
                 case SqliteClientTypeEnum.OpfsWorker:
@@ -69,8 +73,7 @@ class SqliteClientWorker {
                         this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId));
 
                     } catch (err) {
-                        error(err.name, err.message);
-                        this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId, err));
+                        errorHandler(err);
                     }
                     break;
                 case SqliteClientTypeEnum.OpfsSahWorker:
@@ -87,14 +90,12 @@ class SqliteClientWorker {
                         this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId));
 
                     } catch (err) {
-                        error(err.name, err.message);
-                        this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId, err));
+                        errorHandler(err);
                     }
                     break;
             }
         } catch (err) {
-            error(err.name, err.message);
-            this.postBackMessageToMainThread(new CreateDatabaseResultMessage(uniqueId, err));
+            errorHandler(err);
         }
     }
 
