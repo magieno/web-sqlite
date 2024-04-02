@@ -6,6 +6,13 @@ import {ReturnValueEnum} from "./enums/return-value.enum";
 import {RowModeEnum} from "./enums/row-mode.enum";
 import {InWorkerSqliteAdapter} from "./adapters/in-worker.sqlite-adapter";
 
+export * from "./adapters/adapters";
+export * from "./enums/enums";
+export * from "./interfaces/interfaces";
+export * from "./messages/messages";
+export * from "./proxies/proxies";
+export * from "./types/types";
+
 export class SqliteClient {
     public readonly adapter: SqliteAdapterInterface;
 
