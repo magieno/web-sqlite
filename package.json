@@ -1,6 +1,6 @@
 {
   "name": "@magieno/sqlite-client",
-  "version": "3.45.1-build1",
+  "version": "3.45.1-build3-with-extension-support",
   "description": "SQLite Client is a wrapper for Sqlite on Wasm that uses the Origin Private File System to persist the sqlite database file.",
   "keywords": [
     "sqlite",
