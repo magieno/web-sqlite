@@ -56,9 +56,13 @@ export class SqliteClientExtension {
 
                 await client.init();
 
-                const response = await client.executeSql(detail.query, [], ReturnValueEnum.ResultRows, RowModeEnum.Object);
-                SqliteClientExtension.dispatchEvent({"type": "EXECUTE_SQL_QUERY_RESULT", "uniqueId": detail.uniqueId, "filename": detail.filename, "response": response});
-                return;
+                try {
+                    const response = await client.executeSql(detail.query, [], ReturnValueEnum.ResultRows, RowModeEnum.Object);
+                    SqliteClientExtension.dispatchEvent({"type": "EXECUTE_SQL_QUERY_RESULT", "uniqueId": detail.uniqueId, "filename": detail.filename, "response": response});
+                    return;
+                } catch (error) {
+                    SqliteClientExtension.dispatchEvent({"type": "EXECUTE_SQL_QUERY_RESULT", "uniqueId": detail.uniqueId, "error": error.message});
+                }
         }
     }
 }

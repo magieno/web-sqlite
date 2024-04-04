@@ -8,6 +8,9 @@ This library supports the following backing mechanism:
 * OPFS (Worker)
 * OPFS SyncAccessHandles (Worker)
 
+## Chrome Extension
+Available when using this library: Magieno SQLite Viewer Chrome Extension. This extension allows you to execute SQL Queries and see the results in a table format. 
+
 ## Installation using NPM
 
 This library has two important files: `sqlite-client.js` and `sqlite-client-worker.js`. 
