@@ -4,6 +4,7 @@
   "description": "E2E testing ==========",
   "main": "rollup.config.e2e.js",
   "type": "module",
+  "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.json && mkdir -p public_html/dist && cp -r ../dist/bundle/sqlite-client-worker.js public_html/dist/sqlite-client-worker.mjs && cp -r node_modules/@sqlite.org/sqlite-wasm/sqlite-wasm/jswasm/* public_html/dist/ && rollup -c rollup.config.e2e.js --compact",
     "start:server": "pristine file-server:start --directory=./public_html --header=cross-origin-opener-policy:same-origin --header=cross-origin-embedder-policy:require-corp",
