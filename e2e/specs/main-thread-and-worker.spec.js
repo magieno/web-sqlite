@@ -7,7 +7,7 @@ const htmlFilesToLoad = [
 
 htmlFilesToLoad.forEach((htmlFile) => {
     describe(htmlFile, () => {
-        beforeEach(async () => {
+        beforeAll(async () => {
             await page.goto(`http://127.0.0.1:9000/${htmlFile}`, {
                 headless: true,
             });
