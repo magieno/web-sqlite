@@ -1,8 +1,5 @@
 const htmlFilesToLoad = [
-    // "memory.main-thread.html",
-    // "memory.worker.html",
     "opfs-error.worker.html",
-    //"opfs-sah.worker.html",
 ]
 
 htmlFilesToLoad.forEach((htmlFile) => {
@@ -12,13 +9,15 @@ htmlFilesToLoad.forEach((htmlFile) => {
                 headless: true,
             });
 
-            await page.waitForSelector('#success');
+            await page.waitForSelector('#error');
         });
 
         it('should have the error alert', async () => {
-            const alert = await page.$('#error');
+            const errorFound = await page.evaluate(() => {
+                return document.querySelector("#error") !== null;
+            })
 
-            expect(alert).toBeDefined();
+            expect(errorFound).toBeTruthy();
         });
     });
 })
