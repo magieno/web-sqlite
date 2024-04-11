@@ -1,6 +1,6 @@
 {
   "name": "@magieno/sqlite-client",
-  "version": "3.45.1-build1",
+  "version": "10.0.0",
   "description": "SQLite Client is a wrapper for Sqlite on Wasm that uses the Origin Private File System to persist the sqlite database file.",
   "keywords": [
     "sqlite",
@@ -39,7 +39,9 @@
   },
   "homepage": "https://github.com/magieno/sqlite-client#readme",
   "dependencies": {
-    "@sqlite.org/sqlite-wasm": "^3.45.1-build1"
+  },
+  "peerDependencies": {
+    "@sqlite.org/sqlite-wasm": "^3.41.2-build10"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
@@ -49,7 +51,7 @@
     "rollup-plugin-cleanup": "^3.2.1",
     "rollup-plugin-ignore": "^1.0.10",
     "rollup-plugin-typescript2": "^0.34.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.4.3"
   },
   "files": [
     "dist"

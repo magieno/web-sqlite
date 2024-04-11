@@ -8,4 +8,7 @@ export interface OpfsWorkerSqliteOptionsInterface {
     flags: string;
 
     sqliteWorkerPath: string;
+
+    // Default: false;
+    emitEventsToMagienoSqliteChromeExtension?: boolean;
 }
